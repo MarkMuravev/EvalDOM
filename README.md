@@ -1,4 +1,3 @@
-
 # EvalDOM
 
 EvalDOM is a lightweight JavaScript library that enables dynamic content evaluation within HTML documents using XPath. It automatically identifies and evaluates expressions enclosed in `{{ }}` markers, replacing them with the results of JavaScript code execution.
@@ -10,7 +9,7 @@ EvalDOM is a lightweight JavaScript library that enables dynamic content evaluat
 - **Automatic Replacement**: Replaces expression markers with evaluated results in the DOM.
 - **Lightweight**: Minimal overhead with no external dependencies.
 - **Real-time Language Translation**: Perfect for organizing real-time translation of DOM element labels into various languages using predefined templates.
-- **Runtime Execution**: Can be called manually via `DOM.eval()` after page rendering for dynamic content updates.
+- **Runtime Execution**: Can be called manually via `DOM.evaluate()` after page rendering for dynamic content updates.
 - **ESM Module Support**: Can be imported as an ES Module using `import` syntax.
 
 ## Installation
