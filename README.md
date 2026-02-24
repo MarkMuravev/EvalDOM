@@ -1,3 +1,4 @@
+
 # EvalDOM
 
 EvalDOM is a lightweight JavaScript library that enables dynamic content evaluation within HTML documents using XPath. It automatically identifies and evaluates expressions enclosed in `{{ }}` markers, replacing them with the results of JavaScript code execution.
@@ -9,8 +10,8 @@ EvalDOM is a lightweight JavaScript library that enables dynamic content evaluat
 - **Automatic Replacement**: Replaces expression markers with evaluated results in the DOM.
 - **Lightweight**: Minimal overhead with no external dependencies.
 - **Real-time Language Translation**: Perfect for organizing real-time translation of DOM element labels into various languages using predefined templates.
-- **Runtime Execution**: Can be called manually via `DOM.evaluate()` after page rendering for dynamic content updates.
-- **ESM Module Support**: Can be imported as an ES Module using `import` syntax.
+- **Runtime Execution**: Can be called manually via `DOM.evaluate()` after page loading for dynamic content updates.
+- **Multiple Import Formats**: Supports ES Module, CommonJS, and UMD formats.
 
 ## Installation
 
@@ -25,9 +26,41 @@ Include the script in your HTML document:
 ### As an ES Module
 
 ```javascript
-import DOM from './evaldom.js';
+import DOM from './dist/evaldom.esm.js';
 // or
-import { evaluate } from './evaldom.js';
+import { evaluate } from './dist/evaldom.esm.js';
+```
+
+### Via NPM
+
+```bash
+npm install evaldom
+```
+
+Then import in your JavaScript (with bundler):
+
+```javascript
+import DOM from 'evaldom';
+// or
+import { evaluate } from 'evaldom';
+```
+
+... or import in your JavaScript (without bundler):
+
+```js
+import DOM from './node_modules/evaldom/dist/evaldom.esm.js';
+// or
+import { evaluate } from './node_modules/evaldom/dist/evaldom.esm.js';
+```
+
+### As UMD (Browser Global)
+
+```html
+<script src="evaldom.umd.js"></script>
+<script>
+  // Access via global variable DOM
+  DOM.evaluate();
+</script>
 ```
 
 ## Usage
@@ -96,14 +129,14 @@ Place expressions in your HTML using the `{{ }}` syntax. EvalDOM will automatica
 
 ## Runtime Execution
 
-EvalDOM can be manually triggered after page rendering using the `DOM.eval()` method:
+EvalDOM can be manually triggered after page loading using the `DOM.evaluate()` method:
 
 ```javascript
 // After initial page load and DOM manipulation
 DOM.evaluate(); // Re-evaluates all expressions in the DOM
 ```
 
-This allows for dynamic updates when content is modified programmatically after the initial render.
+This allows for dynamic updates when content is modified programmatically after the initial load.
 
 ## Example
 
@@ -114,7 +147,7 @@ This allows for dynamic updates when content is modified programmatically after 
     <title>EvalDOM Example</title>
 </head>
 <body>
-    <p>2 + 2 = {{ 2 + 2 }}</p>
+    <p>Result: {{ 2 + 2 }}</p>
     <p>Current time: {{ new Date().toLocaleString() }}</p>
   
     <script src="evaldom.js"></script>
@@ -135,16 +168,18 @@ Where `translations` is an object containing language-specific strings, and `lan
 
 ## How It Works
 
-1. The script waits for the DOM to load.
-2. It uses XPath to find all nodes containing `{{` and `}}`.
-3. For each matching node, it extracts the expression and evaluates it.
-4. The expression is replaced with the evaluation result.
+1. The library waits for the DOM to load using `DOMContentLoaded` event
+2. It uses XPath to locate all nodes containing `{{` and `}}` expressions
+3. For each found expression, it extracts the JavaScript code between the markers
+4. The code is evaluated using `eval()` and the result replaces the expression
+5. The updated HTML replaces the original node in the DOM
 
 ## Limitations
 
-- Only supports simple JavaScript expressions.
-- Be cautious with `eval()` usage for security reasons.
-- Requires modern browser support for XPath.
+- Only supports simple JavaScript expressions within the markers
+- Uses `eval()` for code execution, which can be a security concern
+- Requires modern browser support for XPath and DOMParser APIs
+- May not work properly with complex nested HTML structures
 
 ## License
 

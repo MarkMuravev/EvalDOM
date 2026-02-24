@@ -19,7 +19,7 @@ export default [{
         {
             file: 'dist/evaldom.umd.js',
             format: 'umd',
-            name: '$', // Глобальная переменная в браузере
+            name: 'DOM',
             sourcemap: true,
             exports: 'named',
         },
@@ -46,7 +46,7 @@ export default [{
         {
             file: 'dist/evaldom.umd.min.js',
             format: 'umd',
-            name: '$',
+            name: 'DOM',
             sourcemap: true,
             exports: 'named',
         },

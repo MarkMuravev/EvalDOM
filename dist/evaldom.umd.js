@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define(['exports'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.$ = {}));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.DOM = {}));
 })(this, (function (exports) { 'use strict';
 
     const DOM = (() => {
@@ -30,7 +30,10 @@
         return { evaluate }
     })();
 
-    window.document.addEventListener("DOMContentLoaded", () => DOM.evaluate());
+    if (typeof window !== 'undefined') {
+        window.DOM = DOM;
+        window.document.addEventListener("DOMContentLoaded", () => DOM.evaluate());
+    }
 
     exports.default = DOM;
 

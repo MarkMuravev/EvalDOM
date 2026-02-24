@@ -24,7 +24,10 @@ const DOM = (() => {
     return { evaluate }
 })();
 
-window.document.addEventListener("DOMContentLoaded", () => DOM.evaluate());
+if (typeof window !== 'undefined') {
+    window.DOM = DOM;
+    window.document.addEventListener("DOMContentLoaded", () => DOM.evaluate());
+}
 
 export { DOM as default };
 //# sourceMappingURL=evaldom.esm.js.map
