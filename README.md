@@ -20,7 +20,7 @@ EvalDOM is a lightweight JavaScript library that enables dynamic content evaluat
 Include the script in your HTML document:
 
 ```html
-<script src="evaldom.js"></script>
+<script type="module" src="./dist/evaldom.esm.js"></script>
 ```
 
 ### As an ES Module
@@ -56,7 +56,7 @@ import { evaluate } from './node_modules/evaldom/dist/evaldom.esm.js';
 ### As UMD (Browser Global)
 
 ```html
-<script src="evaldom.umd.js"></script>
+<script src="./dist/evaldom.umd.js"></script>
 <script>
   // Access via global variable DOM
   DOM.evaluate();
