@@ -1,0 +1,47 @@
+{
+  "name": "evaldom",
+  "version": "1.0.3",
+  "description": "EvalDOM",
+  "type": "module",
+  "main": "./dist/evaldom.cjs",
+  "module": "./dist/evaldom.esm.js",
+  "browser": "./dist/evaldom.umd.js",
+  "exports": {
+    ".": {
+      "import": "./dist/evaldom.esm.js",
+      "require": "./dist/evaldom.cjs",
+      "browser": "./dist/evaldom.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "rollup": "^4.58.0",
+    "rollup-plugin-dts": "^6.3.0"
+  },
+  "keywords": [
+    "universal",
+    "isomorphic",
+    "dom",
+    "query",
+    "selector",
+    "browser"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkMuravev/EvalDOM.git"
+  },
+  "author": "Mark Muravev <mark@echosystem.ru> (https://github.com/MarkMuravev)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarkMuravev/EvalDOM/issues"
+  },
+  "homepage": "https://github.com/MarkMuravev/EvalDOM#readme"
+}
